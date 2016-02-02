@@ -109,10 +109,11 @@ module type Server = sig
 
   type t
 
-  val make : ?conn_closed:(conn -> unit)
+  val make : ?conn_closed:(conn -> (int * float * float) list -> unit)
     -> callback:(conn -> Cohttp.Request.t -> Cohttp_lwt_body.t
                  -> (Cohttp.Response.t * Cohttp_lwt_body.t) Lwt.t)
     -> unit -> t
+    val get_stats : t -> (int * int * int * (int * float * float) list)
 
   (** Resolve a URI and a docroot into a concrete local filename. *)
   val resolve_local_file : docroot:string -> uri:Uri.t -> string

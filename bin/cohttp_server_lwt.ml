@@ -107,7 +107,7 @@ let handler ~info ~docroot ~verbose ~index (ch,conn) req body =
 let start_server docroot port host index verbose cert key () =
   printf "Listening for HTTP request on: %s %d\n" host port;
   let info = sprintf "Served by Cohttp/Lwt listening on %s:%d" host port in
-  let conn_closed (ch,conn) =
+  let conn_closed (ch,conn) _ =
     printf "connection %s closed\n%!"
       (Sexplib.Sexp.to_string_hum (Conduit_lwt_unix.sexp_of_flow ch)) in
   let callback = handler ~info ~docroot ~verbose ~index in

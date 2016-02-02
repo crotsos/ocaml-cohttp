@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 6cd0646d2278cea5898ace940b519331)
+# DO NOT EDIT (digest: 2e2138ae601f5aafa45cf1b373352e2e)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -41,6 +41,7 @@ true: annot, bin_annot
 <lib/*.ml{,i,y}>: pkg_bytes
 <lib/*.ml{,i,y}>: pkg_fieldslib
 <lib/*.ml{,i,y}>: pkg_fieldslib.syntax
+<lib/*.ml{,i,y}>: pkg_mirage-clock-xen
 <lib/*.ml{,i,y}>: pkg_oUnit
 <lib/*.ml{,i,y}>: pkg_re.emacs
 <lib/*.ml{,i,y}>: pkg_sexplib
@@ -59,6 +60,7 @@ true: annot, bin_annot
 <lwt-core/*.ml{,i,y}>: pkg_fieldslib
 <lwt-core/*.ml{,i,y}>: pkg_fieldslib.syntax
 <lwt-core/*.ml{,i,y}>: pkg_lwt
+<lwt-core/*.ml{,i,y}>: pkg_mirage-clock-xen
 <lwt-core/*.ml{,i,y}>: pkg_re.emacs
 <lwt-core/*.ml{,i,y}>: pkg_sexplib
 <lwt-core/*.ml{,i,y}>: pkg_sexplib.syntax
@@ -77,6 +79,7 @@ true: annot, bin_annot
 <js/*.ml{,i,y}>: pkg_js_of_ocaml
 <js/*.ml{,i,y}>: pkg_js_of_ocaml.syntax
 <js/*.ml{,i,y}>: pkg_lwt
+<js/*.ml{,i,y}>: pkg_mirage-clock-xen
 <js/*.ml{,i,y}>: pkg_re.emacs
 <js/*.ml{,i,y}>: pkg_sexplib
 <js/*.ml{,i,y}>: pkg_sexplib.syntax
@@ -97,6 +100,7 @@ true: annot, bin_annot
 <lwt/*.ml{,i,y}>: pkg_lwt
 <lwt/*.ml{,i,y}>: pkg_lwt.unix
 <lwt/*.ml{,i,y}>: pkg_magic-mime
+<lwt/*.ml{,i,y}>: pkg_mirage-clock-xen
 <lwt/*.ml{,i,y}>: pkg_oUnit
 <lwt/*.ml{,i,y}>: pkg_re.emacs
 <lwt/*.ml{,i,y}>: pkg_sexplib
@@ -118,6 +122,7 @@ true: annot, bin_annot
 <async/*.ml{,i,y}>: pkg_fieldslib
 <async/*.ml{,i,y}>: pkg_fieldslib.syntax
 <async/*.ml{,i,y}>: pkg_magic-mime
+<async/*.ml{,i,y}>: pkg_mirage-clock-xen
 <async/*.ml{,i,y}>: pkg_oUnit
 <async/*.ml{,i,y}>: pkg_re.emacs
 <async/*.ml{,i,y}>: pkg_sexplib
@@ -138,6 +143,7 @@ true: annot, bin_annot
 <lib_test/test_parser.{native,byte}>: pkg_lwt
 <lib_test/test_parser.{native,byte}>: pkg_lwt.unix
 <lib_test/test_parser.{native,byte}>: pkg_magic-mime
+<lib_test/test_parser.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_parser.{native,byte}>: pkg_oUnit
 <lib_test/test_parser.{native,byte}>: pkg_re.emacs
 <lib_test/test_parser.{native,byte}>: pkg_sexplib
@@ -155,6 +161,7 @@ true: annot, bin_annot
 <lib_test/test_accept.{native,byte}>: pkg_bytes
 <lib_test/test_accept.{native,byte}>: pkg_fieldslib
 <lib_test/test_accept.{native,byte}>: pkg_fieldslib.syntax
+<lib_test/test_accept.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_accept.{native,byte}>: pkg_oUnit
 <lib_test/test_accept.{native,byte}>: pkg_re.emacs
 <lib_test/test_accept.{native,byte}>: pkg_sexplib
@@ -170,6 +177,7 @@ true: annot, bin_annot
 <lib_test/test_header.{native,byte}>: pkg_bytes
 <lib_test/test_header.{native,byte}>: pkg_fieldslib
 <lib_test/test_header.{native,byte}>: pkg_fieldslib.syntax
+<lib_test/test_header.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_header.{native,byte}>: pkg_oUnit
 <lib_test/test_header.{native,byte}>: pkg_re.emacs
 <lib_test/test_header.{native,byte}>: pkg_sexplib
@@ -185,6 +193,7 @@ true: annot, bin_annot
 <lib_test/test_request.{native,byte}>: pkg_bytes
 <lib_test/test_request.{native,byte}>: pkg_fieldslib
 <lib_test/test_request.{native,byte}>: pkg_fieldslib.syntax
+<lib_test/test_request.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_request.{native,byte}>: pkg_oUnit
 <lib_test/test_request.{native,byte}>: pkg_re.emacs
 <lib_test/test_request.{native,byte}>: pkg_sexplib
@@ -204,6 +213,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt.{native,byte}>: pkg_oUnit
 <lib_test/test_net_lwt.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt.{native,byte}>: pkg_sexplib
@@ -226,6 +236,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt_google.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt_google.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt_google.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt_google.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt_google.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt_google.{native,byte}>: pkg_sexplib
 <lib_test/test_net_lwt_google.{native,byte}>: pkg_sexplib.syntax
@@ -246,6 +257,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_sexplib
 <lib_test/test_net_lwt_google_custom_ctx.{native,byte}>: pkg_sexplib.syntax
@@ -266,6 +278,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_sexplib
 <lib_test/test_net_lwt_lastminute.{native,byte}>: pkg_sexplib.syntax
@@ -286,6 +299,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt_server.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt_server.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt_server.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt_server.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt_server.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt_server.{native,byte}>: pkg_sexplib
 <lib_test/test_net_lwt_server.{native,byte}>: pkg_sexplib.syntax
@@ -306,6 +320,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_sexplib
 <lib_test/test_net_lwt_multi_get.{native,byte}>: pkg_sexplib.syntax
@@ -326,6 +341,7 @@ true: annot, bin_annot
 <lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_lwt
 <lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_lwt.unix
 <lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_sexplib
 <lib_test/test_net_lwt_client_and_server.{native,byte}>: pkg_sexplib.syntax
@@ -345,6 +361,7 @@ true: annot, bin_annot
 <lib_test/test_net_async.{native,byte}>: pkg_fieldslib
 <lib_test/test_net_async.{native,byte}>: pkg_fieldslib.syntax
 <lib_test/test_net_async.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_async.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_async.{native,byte}>: pkg_oUnit
 <lib_test/test_net_async.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_async.{native,byte}>: pkg_sexplib
@@ -364,6 +381,7 @@ true: annot, bin_annot
 <lib_test/test_net_async_http10.{native,byte}>: pkg_fieldslib
 <lib_test/test_net_async_http10.{native,byte}>: pkg_fieldslib.syntax
 <lib_test/test_net_async_http10.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_async_http10.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_async_http10.{native,byte}>: pkg_oUnit
 <lib_test/test_net_async_http10.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_async_http10.{native,byte}>: pkg_sexplib
@@ -383,6 +401,7 @@ true: annot, bin_annot
 <lib_test/test_net_async_multi_get.{native,byte}>: pkg_fieldslib
 <lib_test/test_net_async_multi_get.{native,byte}>: pkg_fieldslib.syntax
 <lib_test/test_net_async_multi_get.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_async_multi_get.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_async_multi_get.{native,byte}>: pkg_oUnit
 <lib_test/test_net_async_multi_get.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_async_multi_get.{native,byte}>: pkg_sexplib
@@ -402,6 +421,7 @@ true: annot, bin_annot
 <lib_test/test_net_async_server.{native,byte}>: pkg_fieldslib
 <lib_test/test_net_async_server.{native,byte}>: pkg_fieldslib.syntax
 <lib_test/test_net_async_server.{native,byte}>: pkg_magic-mime
+<lib_test/test_net_async_server.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_net_async_server.{native,byte}>: pkg_oUnit
 <lib_test/test_net_async_server.{native,byte}>: pkg_re.emacs
 <lib_test/test_net_async_server.{native,byte}>: pkg_sexplib
@@ -421,6 +441,7 @@ true: annot, bin_annot
 <lib_test/test_async_integration.{native,byte}>: pkg_fieldslib
 <lib_test/test_async_integration.{native,byte}>: pkg_fieldslib.syntax
 <lib_test/test_async_integration.{native,byte}>: pkg_magic-mime
+<lib_test/test_async_integration.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_async_integration.{native,byte}>: pkg_oUnit
 <lib_test/test_async_integration.{native,byte}>: pkg_re.emacs
 <lib_test/test_async_integration.{native,byte}>: pkg_sexplib
@@ -447,6 +468,7 @@ true: annot, bin_annot
 <bin/cohttp_server_async.{native,byte}>: pkg_fieldslib
 <bin/cohttp_server_async.{native,byte}>: pkg_fieldslib.syntax
 <bin/cohttp_server_async.{native,byte}>: pkg_magic-mime
+<bin/cohttp_server_async.{native,byte}>: pkg_mirage-clock-xen
 <bin/cohttp_server_async.{native,byte}>: pkg_re.emacs
 <bin/cohttp_server_async.{native,byte}>: pkg_sexplib
 <bin/cohttp_server_async.{native,byte}>: pkg_sexplib.syntax
@@ -465,6 +487,7 @@ true: annot, bin_annot
 <bin/cohttp_curl_async.{native,byte}>: pkg_fieldslib
 <bin/cohttp_curl_async.{native,byte}>: pkg_fieldslib.syntax
 <bin/cohttp_curl_async.{native,byte}>: pkg_magic-mime
+<bin/cohttp_curl_async.{native,byte}>: pkg_mirage-clock-xen
 <bin/cohttp_curl_async.{native,byte}>: pkg_re.emacs
 <bin/cohttp_curl_async.{native,byte}>: pkg_sexplib
 <bin/cohttp_curl_async.{native,byte}>: pkg_sexplib.syntax
@@ -489,6 +512,7 @@ true: annot, bin_annot
 <bin/cohttp_server_lwt.{native,byte}>: pkg_lwt
 <bin/cohttp_server_lwt.{native,byte}>: pkg_lwt.unix
 <bin/cohttp_server_lwt.{native,byte}>: pkg_magic-mime
+<bin/cohttp_server_lwt.{native,byte}>: pkg_mirage-clock-xen
 <bin/cohttp_server_lwt.{native,byte}>: pkg_re.emacs
 <bin/cohttp_server_lwt.{native,byte}>: pkg_sexplib
 <bin/cohttp_server_lwt.{native,byte}>: pkg_sexplib.syntax
@@ -510,6 +534,7 @@ true: annot, bin_annot
 <bin/cohttp_proxy_lwt.{native,byte}>: pkg_lwt
 <bin/cohttp_proxy_lwt.{native,byte}>: pkg_lwt.unix
 <bin/cohttp_proxy_lwt.{native,byte}>: pkg_magic-mime
+<bin/cohttp_proxy_lwt.{native,byte}>: pkg_mirage-clock-xen
 <bin/cohttp_proxy_lwt.{native,byte}>: pkg_re.emacs
 <bin/cohttp_proxy_lwt.{native,byte}>: pkg_sexplib
 <bin/cohttp_proxy_lwt.{native,byte}>: pkg_sexplib.syntax
@@ -531,6 +556,7 @@ true: annot, bin_annot
 <bin/cohttp_curl_lwt.{native,byte}>: pkg_lwt
 <bin/cohttp_curl_lwt.{native,byte}>: pkg_lwt.unix
 <bin/cohttp_curl_lwt.{native,byte}>: pkg_magic-mime
+<bin/cohttp_curl_lwt.{native,byte}>: pkg_mirage-clock-xen
 <bin/cohttp_curl_lwt.{native,byte}>: pkg_re.emacs
 <bin/cohttp_curl_lwt.{native,byte}>: pkg_sexplib
 <bin/cohttp_curl_lwt.{native,byte}>: pkg_sexplib.syntax
@@ -550,6 +576,7 @@ true: annot, bin_annot
 <bin/*.ml{,i,y}>: pkg_lwt
 <bin/*.ml{,i,y}>: pkg_lwt.unix
 <bin/*.ml{,i,y}>: pkg_magic-mime
+<bin/*.ml{,i,y}>: pkg_mirage-clock-xen
 <bin/*.ml{,i,y}>: pkg_re.emacs
 <bin/*.ml{,i,y}>: pkg_sexplib
 <bin/*.ml{,i,y}>: pkg_sexplib.syntax
@@ -569,6 +596,7 @@ true: annot, bin_annot
 <examples/async/hello_world.{native,byte}>: pkg_fieldslib
 <examples/async/hello_world.{native,byte}>: pkg_fieldslib.syntax
 <examples/async/hello_world.{native,byte}>: pkg_magic-mime
+<examples/async/hello_world.{native,byte}>: pkg_mirage-clock-xen
 <examples/async/hello_world.{native,byte}>: pkg_re.emacs
 <examples/async/hello_world.{native,byte}>: pkg_sexplib
 <examples/async/hello_world.{native,byte}>: pkg_sexplib.syntax
@@ -588,6 +616,7 @@ true: annot, bin_annot
 <examples/async/s3_cp.{native,byte}>: pkg_fieldslib
 <examples/async/s3_cp.{native,byte}>: pkg_fieldslib.syntax
 <examples/async/s3_cp.{native,byte}>: pkg_magic-mime
+<examples/async/s3_cp.{native,byte}>: pkg_mirage-clock-xen
 <examples/async/s3_cp.{native,byte}>: pkg_nocrypto
 <examples/async/s3_cp.{native,byte}>: pkg_re.emacs
 <examples/async/s3_cp.{native,byte}>: pkg_sexplib
@@ -609,6 +638,7 @@ true: annot, bin_annot
 "lib_test/test_xhr.byte": pkg_js_of_ocaml
 "lib_test/test_xhr.byte": pkg_js_of_ocaml.syntax
 "lib_test/test_xhr.byte": pkg_lwt
+"lib_test/test_xhr.byte": pkg_mirage-clock-xen
 "lib_test/test_xhr.byte": pkg_re.emacs
 "lib_test/test_xhr.byte": pkg_sexplib
 "lib_test/test_xhr.byte": pkg_sexplib.syntax
@@ -630,6 +660,7 @@ true: annot, bin_annot
 <examples/async/receive_post.{native,byte}>: pkg_fieldslib
 <examples/async/receive_post.{native,byte}>: pkg_fieldslib.syntax
 <examples/async/receive_post.{native,byte}>: pkg_magic-mime
+<examples/async/receive_post.{native,byte}>: pkg_mirage-clock-xen
 <examples/async/receive_post.{native,byte}>: pkg_re.emacs
 <examples/async/receive_post.{native,byte}>: pkg_sexplib
 <examples/async/receive_post.{native,byte}>: pkg_sexplib.syntax
@@ -646,6 +677,7 @@ true: annot, bin_annot
 <examples/async/*.ml{,i,y}>: pkg_fieldslib
 <examples/async/*.ml{,i,y}>: pkg_fieldslib.syntax
 <examples/async/*.ml{,i,y}>: pkg_magic-mime
+<examples/async/*.ml{,i,y}>: pkg_mirage-clock-xen
 <examples/async/*.ml{,i,y}>: pkg_re.emacs
 <examples/async/*.ml{,i,y}>: pkg_sexplib
 <examples/async/*.ml{,i,y}>: pkg_sexplib.syntax
@@ -665,6 +697,7 @@ true: annot, bin_annot
 <examples/doc/client_lwt.{native,byte}>: pkg_lwt
 <examples/doc/client_lwt.{native,byte}>: pkg_lwt.unix
 <examples/doc/client_lwt.{native,byte}>: pkg_magic-mime
+<examples/doc/client_lwt.{native,byte}>: pkg_mirage-clock-xen
 <examples/doc/client_lwt.{native,byte}>: pkg_re.emacs
 <examples/doc/client_lwt.{native,byte}>: pkg_sexplib
 <examples/doc/client_lwt.{native,byte}>: pkg_sexplib.syntax
@@ -685,6 +718,7 @@ true: annot, bin_annot
 <examples/doc/server_lwt.{native,byte}>: pkg_lwt
 <examples/doc/server_lwt.{native,byte}>: pkg_lwt.unix
 <examples/doc/server_lwt.{native,byte}>: pkg_magic-mime
+<examples/doc/server_lwt.{native,byte}>: pkg_mirage-clock-xen
 <examples/doc/server_lwt.{native,byte}>: pkg_re.emacs
 <examples/doc/server_lwt.{native,byte}>: pkg_sexplib
 <examples/doc/server_lwt.{native,byte}>: pkg_sexplib.syntax
@@ -703,6 +737,7 @@ true: annot, bin_annot
 <examples/doc/*.ml{,i,y}>: pkg_lwt
 <examples/doc/*.ml{,i,y}>: pkg_lwt.unix
 <examples/doc/*.ml{,i,y}>: pkg_magic-mime
+<examples/doc/*.ml{,i,y}>: pkg_mirage-clock-xen
 <examples/doc/*.ml{,i,y}>: pkg_re.emacs
 <examples/doc/*.ml{,i,y}>: pkg_sexplib
 <examples/doc/*.ml{,i,y}>: pkg_sexplib.syntax
@@ -723,6 +758,7 @@ true: annot, bin_annot
 <lib_test/test_sanity.{native,byte}>: pkg_lwt
 <lib_test/test_sanity.{native,byte}>: pkg_lwt.unix
 <lib_test/test_sanity.{native,byte}>: pkg_magic-mime
+<lib_test/test_sanity.{native,byte}>: pkg_mirage-clock-xen
 <lib_test/test_sanity.{native,byte}>: pkg_oUnit
 <lib_test/test_sanity.{native,byte}>: pkg_re.emacs
 <lib_test/test_sanity.{native,byte}>: pkg_sexplib
@@ -744,6 +780,7 @@ true: annot, bin_annot
 <lib_test/*.ml{,i,y}>: pkg_lwt
 <lib_test/*.ml{,i,y}>: pkg_lwt.unix
 <lib_test/*.ml{,i,y}>: pkg_magic-mime
+<lib_test/*.ml{,i,y}>: pkg_mirage-clock-xen
 <lib_test/*.ml{,i,y}>: pkg_oUnit
 <lib_test/*.ml{,i,y}>: pkg_re.emacs
 <lib_test/*.ml{,i,y}>: pkg_sexplib

@@ -159,6 +159,7 @@ module Make_client
     return resps
 end
 
+  let conn_closed_ignore a b = ()
 
 module Make_server(IO:IO) = struct
   module IO = IO
@@ -173,11 +174,18 @@ module Make_server(IO:IO) = struct
       Cohttp.Request.t ->
       Body.t ->
       (Cohttp.Response.t * Body.t) Lwt.t;
-    conn_closed: conn -> unit;
+    conn_closed: conn -> (int * float * float) list -> unit;
+    mutable conn_id: int;
+    mutable failed_conn: int;
+    mutable completed_conn: int;
+    mutable active_conn: int;
+    conn_stats: (int, (int * float * float)) Hashtbl.t;
   }
 
-  let make ?(conn_closed=ignore) ~callback () =
-    { conn_closed ; callback }
+
+  let make ?(conn_closed=(conn_closed_ignore)) ~callback () =
+      { conn_closed ; callback ; conn_id=0; conn_stats=(Hashtbl.create 1024);
+        failed_conn=0; completed_conn=0; active_conn=0;}
 
   module Transfer_IO = Transfer_io.Make(IO)
 
@@ -227,7 +235,7 @@ module Make_server(IO:IO) = struct
       |Some uri -> "Not found: " ^ (Uri.to_string uri) in
     respond_string ~status:`Not_found ~body ()
 
-  let request_stream ic =
+  let request_stream spec ic =
     (* don't try to read more from ic until the previous request has
        been fully read an released this mutex *)
     let read_m = Lwt_mutex.create () in
@@ -238,10 +246,14 @@ module Make_server(IO:IO) = struct
       if !early_close
       then return_none
       else
+        let ts = Clock.time () in
+        let _ = spec.active_conn <- spec.active_conn + 1 in
         Lwt_mutex.lock read_m >>= fun () ->
         Request.read ic >>= function
         | `Eof | `Invalid _ -> (* TODO: request logger for invalid req *)
-          Lwt_mutex.unlock read_m;
+                let _ = spec.active_conn <- spec.active_conn - 1 in
+                let _ = spec.failed_conn <- spec.failed_conn + 1 in
+           Lwt_mutex.unlock read_m;
           return_none
         | `Ok req -> begin
             early_close := not (Request.is_keep_alive req);
@@ -256,42 +268,61 @@ module Make_server(IO:IO) = struct
                 (fun () -> Lwt_mutex.unlock read_m);
               let body = Body.of_stream body_stream in
               (* The read_m remains locked until the caller reads the body *)
-              return (Some (req, body))
+              return (Some (ts, req, body))
             (* TODO for now we are just repeating the old behaviour
              * of ignoring the body in the request. Perhaps it should be
              * changed it did for responses *)
             | `No | `Unknown ->
               Lwt_mutex.unlock read_m;
-              return (Some (req, `Empty))
+              return (Some (ts, req, `Empty))
           end
     end
 
-  let response_stream callback io_id conn_id req_stream =
-    Lwt_stream.map_s (fun (req, body) ->
+  let response_stream spec callback io_id conn_id req_stream =
+    Lwt_stream.map_s (fun (ts, req, body) ->
       Lwt.finalize
         (fun () ->
            Lwt.catch
-             (fun () -> callback (io_id, conn_id) req body)
-             (fun _exn -> respond_error ~body:"Internal Server Error" ()))
+             (fun () -> Lwt.bind (callback (io_id, conn_id) req body) (fun (h, b) -> 
+                 let _ = spec.active_conn <- spec.active_conn - 1 in
+                 let _ = spec.completed_conn <- spec.completed_conn + 1 in Lwt.return (ts, h, b))) 
+             (fun _exn -> Lwt.bind (respond_error ~body:"Internal Server Error" ()) 
+             (fun (h, b) -> 
+                 let _ = spec.active_conn <- spec.active_conn - 1 in
+                 let _ = spec.failed_conn <- spec.failed_conn + 1 in  return (ts, h, b))))
         (fun () -> Body.drain_body body)
     ) req_stream
 
+    let get_stats spec =
+            let ret = (spec.failed_conn, spec.completed_conn, spec.active_conn, 
+                    (Hashtbl.fold (fun a (id, s, e) ret -> (id, s, e) :: ret) spec.conn_stats []))
+        in
+        let _ = spec.failed_conn <- 0 in
+        let _ = spec.completed_conn <- 0 in
+        let _ = Hashtbl.clear spec.conn_stats in 
+        ret
+
   let callback spec io_id ic oc =
     let conn_id = Connection.create () in
-    let conn_closed () = spec.conn_closed (io_id,conn_id) in
+    let result = ref [] in
+    let conn_closed () = spec.conn_closed (io_id,conn_id) (!result)  in
     (* The server operates by reading requests into a Lwt_stream of requests
        and mapping them into a stream of responses serially using [spec]. The
        responses are then sent over the wire *)
-    let req_stream = request_stream ic in
-    let res_stream = response_stream spec.callback io_id conn_id req_stream in
+    let req_stream = request_stream spec ic in
+    let res_stream = response_stream spec spec.callback io_id conn_id req_stream in
     (* Clean up resources when the response stream terminates and call
      * the user callback *)
-    Lwt_stream.on_terminate res_stream conn_closed;
+    Lwt_stream.on_terminate res_stream (conn_closed );
     (* Transmit the responses *)
-    res_stream |> Lwt_stream.iter_s (fun (res,body) ->
+    res_stream |> Lwt_stream.iter_s (fun (ts, res, body) ->
       let flush = Response.flush res in
       Response.write ~flush (fun writer ->
-        Body.write_body (Response.write_body writer) body
+        let res = Body.write_body (Response.write_body writer) body in 
+      let _ = spec.conn_id <- spec.conn_id + 1 in 
+      let _ = Hashtbl.add spec.conn_stats spec.conn_id (spec.conn_id, ts, Clock.time ()) in 
+      let _ = result := (spec.conn_id, ts, Clock.time ()) :: !result in 
+      res
       ) res oc
     )
 end

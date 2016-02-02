@@ -56,7 +56,7 @@ let handler ~verbose (ch,conn) req body =
 
 let start_proxy port host verbose cert key () =
   printf "Listening for HTTP request on: %s %d\n%!" host port;
-  let conn_closed (ch,conn) =
+  let conn_closed (ch,conn) _ =
     printf "Connection %s closed\n%!"
       (Sexplib.Sexp.to_string_hum (Conduit_lwt_unix.sexp_of_flow ch)) in
   let callback = handler ~verbose in
